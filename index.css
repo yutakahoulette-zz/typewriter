@@ -1,0 +1,35 @@
+body {
+	height: 100%;
+	width: 100%;
+	display: table;
+	margin: 0;
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	font-weight: 300;
+	font-size: 20px;
+}
+main {
+	padding: 20px;
+	display: table-cell;
+	vertical-align: middle;
+}
+section {
+	max-width: 500px;
+	margin: 0 auto;
+}
+div {
+	background: rgba(0,0,0,0.03);
+	display: block;
+	min-height: 1em;
+	padding: 10px;
+}
+p {
+	margin-bottom: 10px;
+}
+#js-typed  {
+	line-height: 1em;
+}
+#js-typed:after {
+	color: rgba(0,0,0,0.5);
+	margin-left: -1px;
+	content: '|';
+}
