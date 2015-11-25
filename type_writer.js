@@ -1,4 +1,4 @@
-module.exports = function (arr, id, ms, blink) {
+module.exports = function (arr, id, ms) {
 	var j = 0
 	var linesLength = arr.length
 	var typeArea = document.getElementById(id)
@@ -8,7 +8,7 @@ module.exports = function (arr, id, ms, blink) {
 	function typeLine(line) {
 		var lineLength = line.length
 		var i = 0
-		
+
 		addLetter()
 
 		function addLetter(){
