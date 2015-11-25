@@ -1,0 +1,114 @@
+<style>
+
+.is-cursorBlinking {
+	position: relative;
+	display: inline;
+	transition: all 0.2s ease;
+}
+
+.is-cursorBlinking:before {
+	position: absolute;
+	right: -3px;
+	top: 0;
+	height: 100%;
+	width: 1px;
+	background: rgba(0, 0, 0, 0.5);
+	content: '';
+}
+
+
+
+</style>
+
+
+<html>
+	<p>These are a few of my favorite things:</p>
+	<p id='js-typed'></p>
+</html>
+
+
+
+
+<script>
+
+var favorites =
+[ 'raindrops on roses'
+, 'whiskers on kittens'
+, 'bright copper kettles'
+, 'warm woolen mittens'
+, 'brown paper packages tied up with strings'
+, 'cream colored ponies'
+, 'crisp apple streudels'
+, 'doorbells'
+, 'sleigh bells'
+, 'schnitzel with noodles'
+, 'wild geese that fly with the moon on their wings'
+, 'girls in white dresses with blue satin sashes'
+, 'snowflakes that stay on my nose and eyelashes'
+, 'silver white winters that melt into springs'
+]
+
+function toNthLetter(string, n) {
+	return string.split('').splice(0, n).join('')
+}
+
+function blinkCursor(el) {
+	setInterval(function(){
+		el.className = el.className === 'is-cursorBlinking' ? '' : 'is-cursorBlinking'
+	}, 500)
+}
+
+
+
+function typeLines(arr, id, ms, blink) {
+	var j = 0
+	var linesLength = arr.length
+	var typeArea = document.getElementById(id)
+
+	if (blink['blink']) {
+		blinkCursor(typeArea)
+	}
+
+	typeLine(arr[j])
+
+	function typeLine(line) {
+		var lineLength = line.length
+		var i = 0
+
+		addLetter()
+
+		function addLetter(){
+			setTimeout(function(){
+				typeArea.innerHTML = toNthLetter(line, i)
+				if(i <= lineLength) {
+					i++
+					addLetter()
+				} else {
+					setTimeout(function(){
+						removeLetter()
+					}, ms * 7)
+				}
+			}, ms)
+		}
+
+		function removeLetter(){
+			setTimeout(function(){
+				typeArea.innerHTML = toNthLetter(line, i)
+				if(i > 0) {
+					i--
+					removeLetter()
+				} else {
+					setTimeout(function(){
+						j = (j + 1) % linesLength
+						typeLine(arr[j])
+					}, ms * 5)
+				}
+			}, ms)
+		}
+	}
+
+}
+
+typeLines(favorites, 'js-typed', 80, {blink: true})
+
+</script>
